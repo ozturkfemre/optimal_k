@@ -92,144 +92,6 @@ dunngraph <- function(data) {
   abline(v=which(dunnin==max(dunnin)) + 1, lwd=1, col="red", lty="dashed")
 }
 
-#############
-### study ###
-#############
-
-# In this study, the most widely used methods for determining the number of clusters, namely Average Silhouette, Caliński - Harabasz, Davies - Bouldin and Dunn Index were used. The performances of these methods were compared by Rand Index and Meila's Variation of Information criteria on nine real data sets where the number of clusters was known in advance.
-
-#########################
-### k-means algorithm ###
-#########################
-
-# K-means is a popular unsupervised learning algorithm used for clustering. It partitions a set of n data points into k clusters, where k is a user-defined parameter. 
-# The k-means algorithm minimizes the sum of squared distances between the data points and their closest cluster center to determine total within sum of squares for each cluster. 
-
-#The algorithm works as follows:
-# Initialization: Choose k initial cluster centers (centroids) randomly or using some other method, such as k-means++.
-
-# Assignment: Assign each data point to the closest cluster center based on the Euclidean distance between the data point and the centroid.
-
-# Recalculation: Calculate the mean of all the data points assigned to each cluster and use this mean as the new cluster center (centroid).
-
-# Repeat steps 2 and 3 until the cluster assignments stop changing, or a maximum number of iterations is reached.
-
-# Output: The final clustering solution is the k clusters, with each cluster being represented by its centroid.
-
-
-# See [1], [2] for detailed information.
-
-#########################
-### Silhouette Method ###
-#########################
-
-# The silhouette method is a common evaluation metric used in unsupervised learning to measure the quality of a clustering solution. 
-# The silhouette value for a particular data point is a measure of how similar that data point is to the other data points in its own cluster, compared to other clusters. 
-# The silhouette value ranges from -1 to 1, where a value of 1 indicates a strong similarity to the other data points in its own cluster, and a value of -1 indicates a strong similarity to data points in another cluster.
-
-# In essence, the silhouette method measures how well-defined a particular cluster is, and how well-separated it is from other clusters. 
-# This makes it a useful tool for evaluating the effectiveness of different clustering algorithms or for determining the optimal number of clusters in a given dataset.
-
-# For each observation the silhouette method can be calculated as follows:
-# calculate cluster tightness: the average distance to all observations in the same cluster, which is called a(i).
-# calculate cluster separation: calculate the minimum distance to all the data points in a different cluster, which is called b(i).
-# calculate silhouette coefficient: calculate its silhouette value "s(i)" as the difference between the b(i) and a(i), divided by the maximum of these two distances: (b(i) - a(i)) / max(a(i), b(i))
-
-# Finally, calculate the average silhouette value for all observations: mean(si)
-
-# see [3] for detailed information
-
-###########################
-### Calinski - Harabasz ###
-###########################
-
-# The Calinski-Harabasz index (also known as the Variance Ratio Criterion) is a commonly used evaluation metric for comparing different clustering solutions in unsupervised learning.
-# It is a ratio of the between-cluster variance and the within-cluster variance, and it is used to determine the number of clusters that should be used in a clustering solution.
-
-# For each cluster calinski - harabasz method can be calculated as follows:
-# calculate within cluster sum of squares WCSS: calculate the sum of the squared distances between each data point and its corresponding cluster center. 
-# calculate between cluster sum of squares BCSS: calculate the sum of the squared distances between each cluster center and the overall mean of all the data points. 
-
-# (BCSS / WCSS) - (n-k) / (k-1) k: total cluster number, n:total observation number
-
-# The Calinski-Harabasz index ranges from 0 to infinity, with a higher value indicating a better clustering.
-
-# see [4] for detailed information
-
-########################
-### Davies - Bouldin ###
-########################
-
-# The Davies-Bouldin index (DBI) is a measure of the similarity between the clusters in a clustering solution. 
-# The DBI is calculated as the average similarity between each cluster and its most similar cluster, where the similarity between two clusters is defined as the maximum distance between any data point in one cluster and its closest data point in the other cluster.
-
-# DBI is calculated as follows:
-# calculate intra-cluster dispersion: calculate the mean distance of all the data points in each cluster to the cluster center.
-# calculate separation criteria: calculate the Euclidean distance between the cluster centers for each pair of clusters.
-# find the most similar cluster: for each pair of clusters, calculate the similarity d(i, j) between the two clusters, as defined in the previous answer.
-# Sum up the maximum similarity between each cluster and its most similar cluster.
-# Divide the sum by the number of clusters to obtain the Davies-Bouldin index
-
-# The Davies-Bouldin index ranges from 0 to infinity, with a lower value indicating a better clustering solution. 
-# A DBI of 0 indicates that there is no similarity between any two clusters, while a high DBI value indicates that there is a high level of similarity between some of the clusters. 
-
-# For detailed information please see [5]
-
-##################
-### Dunn Index ###
-##################
-
-# The Dunn index is a measure of the compactness and separability of the clusters in a clustering solution. 
-# It is calculated as the ratio of the minimum separation to the maximum diameter. 
-
-# Dunn Index is calculated as follows:
-# calculate minimum separation: calculate the smallest distance between the observations from two different clusters.
-# calculate maximum diameter: calculate the maximum distance between the observations in the same cluster.
-
-# The Dunn index ranges from 0 to infinity, with a higher value indicating a better clustering solution. 
-# A value of 1 indicates that the clusters are perfectly separated and perfectly compact, while a low value indicates that the clusters are either not separated or not compact.
-
-# for detailed information please see [6]
-
-#######################
-### Data Prepration ###
-#######################
-
-# The data preparation process for clustering is an important step to ensure that the clustering algorithm produces meaningful and accurate results. Some common steps involved in the data preparation process for clustering include:
-
-# Data cleaning: This involves removing missing values, duplicates, or outliers from the data. This step helps to ensure that the clustering algorithm is not biased towards certain data points or clusters.
-
-# Data standardization: This involves scaling the data so that all the features have a similar range and impact on the clustering results. 
-
-# Dimensionality reduction: If the data has a large number of features, it may be helpful to reduce the dimensionality of the data using techniques like principal component analysis (PCA) or linear discriminant analysis (LDA). This can help to reduce noise and simplify the data, making it easier to interpret the results.
-
-# Data transformation: This involves transforming the data into a different representation that may be more suitable for clustering. For example, transforming the data into a polar coordinate system or a logarithmic scale can help to highlight patterns or relationships that may not be apparent in the original data.
-
-# Feature selection: This involves selecting a subset of the features that are most relevant for clustering. This can be done manually or using automated methods like mutual information or chi-squared tests.
-
-# It's important to keep in mind that the data preparation process will vary depending on the specific requirements of the clustering problem. The most appropriate data preparation steps will depend on the type of data, the clustering algorithm being used, and the goals of the clustering analysis.
-
-# please see [7] , [8] for detailed information
-
-##################
-### Rand Index ###
-##################
-
-# The Rand index is a measure of similarity between two clusterings, and can be used to compare a clustering result with a set of ground truth labels. 
-# Given a clustering result with k clusters and a set of ground truth labels with c classes, the Rand index measures the proportion of pairs of data points that are either both assigned to the same cluster in the clustering result and to the same class in the ground truth labels, or both assigned to different clusters in the clustering result and to different classes in the ground truth labels.
-
-# please see [9] for detailed information
-
-########################################
-### Meila's Variation of Information ###
-########################################
-
-# Meila's variation of information is a measure of the difference between two clusterings. 
-# It is used to evaluate the quality of a clustering result compared to a set of ground truth labels. 
-# The variation of information is calculated as the mutual information between the clustering result and the ground truth labels, normalized by the entropy of either the clustering result or the ground truth labels.
-
-# please see [10] for detailed information
-
 ################################################################################
 ################################################################################
 ################################################################################
@@ -1279,7 +1141,7 @@ typeof(df3)
 df3 <- as.data.frame(df3)
 iris$Species <- as.factor(iris$Species)
 ggplot(df3, aes(x=PC1 , y=PC2)) + 
-  geom_point(aes(col = iris$Species))+
+  geom_point(aes(col = iris$Species), size = 2)+
   xlab("PC1") +
   ylab("PC2") +
   theme_minimal()+
@@ -1290,14 +1152,15 @@ ecoli$site <- as.factor(ecoli$site)
 df2 <- as.data.frame(df2)
 
 legend_title <- "class"
-colorz <- c("skyblue1", "thistle1", "maroon1", "green", "goldenrod1", "moccasin", "purple4", "wheat")
+colorz <- c("green4", "red", "navy", "yellow4", "black", "gray30", "purple4", "chocolate4")
 
-ggplot(df2) + 
-  geom_point(aes(x=mcg , y=gvh, color = ecoli$site))+
+ggplot(ecoli) + 
+  geom_point(aes(x=aac , y=gvh, color = ecoli$site), size = 2)+
   xlab("mcg") +
   ylab("gvh") +
   theme_minimal()+ 
-  scale_color_manual(legend_title, values =   colorz)
+  scale_color_manual(legend_title, values = colorz)
+
 
 
 ################################################################################
