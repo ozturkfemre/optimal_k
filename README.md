@@ -1,4 +1,4 @@
-## Codes of the paper titled "Comparison of the methods to determine optimal number of clusters"
+## Codes of the paper titled *Comparison of the methods to determine optimal number of clusters*
 
 In this repository, you can find codes and data sets of the paper titled *Comparison of the methods to determine the optimal number of clusters*.
 
