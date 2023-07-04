@@ -17,7 +17,11 @@ OTHER DATAS ARE TAKEN FROM:
 ``Dua, D. and Graff, C. UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA:University of California, School of Information and Computer Science. 2019``
 
 
+Paper Information:
 
+ÖZTÜRK, F. E., & DEMİREL, N. (2023). Comparison of the methods to determine optimal number of cluster. Veri Bilimi, 6(1), 34-45.
+
+You can download the paper in here: https://dergipark.org.tr/en/download/article-file/2991304
 
 
 
